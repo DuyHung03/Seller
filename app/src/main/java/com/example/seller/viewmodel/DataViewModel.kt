@@ -1,6 +1,5 @@
 package com.example.seller.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +19,6 @@ class DataViewModel @Inject constructor(
     fun getOrders() = viewModelScope.launch {
         val orderList = dataRepository.getAllOrders()
         _ordersLiveData.value = orderList
-        Log.d("TAG", "getAllOrders: ${orderList?.get(0)?.orderId}")
     }
 
     fun cancelOrder(

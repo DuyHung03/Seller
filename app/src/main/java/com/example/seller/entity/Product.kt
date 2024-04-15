@@ -8,7 +8,7 @@ data class Product(
     val category: Category = Category(), // Provide a default value
     val creationAt: String = "",
     val description: String = "",
-    val id: Int = 0,
+    val id: Double = 0.0,
     val images: List<String> = emptyList(),
     val price: Int = 0,
     val title: String = "",

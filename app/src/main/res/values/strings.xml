@@ -59,7 +59,9 @@
     <string name="monthly">Monthly</string>
     <string name="day">Day</string>
     <string name="month">Month</string>
+    <string name="productId">Product\'s Id: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="chart">Chart</string>
+    <string name="product_management">Product Management</string>
 </resources>

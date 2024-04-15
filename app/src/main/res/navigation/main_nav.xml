@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_revenue" />
     <fragment
         android:id="@+id/productFragment"
-        android:name="com.example.seller.view.fragment.ProductFragment"
+        android:name="com.example.seller.view.fragment.ManageFragment"
         android:label="fragment_product"
-        tools:layout="@layout/fragment_product" />
+        tools:layout="@layout/fragment_manage" />
 </navigation>

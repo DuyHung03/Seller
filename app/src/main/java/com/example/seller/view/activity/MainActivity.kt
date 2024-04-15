@@ -6,10 +6,9 @@ import androidx.fragment.app.FragmentManager
 import com.example.seller.R
 import com.example.seller.databinding.ActivityMainBinding
 import com.example.seller.view.fragment.HomeFragment
-import com.example.seller.view.fragment.ProductFragment
+import com.example.seller.view.fragment.ManageFragment
 import com.example.seller.view.fragment.RevenueFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
                 2 -> {
                     fm.beginTransaction()
-                        .replace(R.id.fragment_container, ProductFragment())
+                        .replace(R.id.fragment_container, ManageFragment())
                         .commit()
                 }
             }

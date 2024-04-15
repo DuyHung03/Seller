@@ -40,6 +40,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -58,6 +59,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:24.10.0")
     implementation("com.google.firebase:firebase-analytics:21.5.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -106,6 +108,7 @@ dependencies {
     //validation
     implementation("com.wajahatkarim:easyvalidation-core:1.0.4")
 
+    //okhttp
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     //rounded image
@@ -130,12 +133,12 @@ dependencies {
     implementation("com.jaredrummler:material-spinner:1.3.1")
 
     //chart
-    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     //bottom nav
     implementation("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 
 
     //fingerprint
-    implementation ("androidx.biometric:biometric:1.0.1")
+    implementation("androidx.biometric:biometric:1.1.0")
 }
