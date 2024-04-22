@@ -1,5 +1,6 @@
 package com.example.seller.viewmodel
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -42,5 +43,13 @@ class DataViewModel @Inject constructor(
         }
         return message
     }
+
+    fun saveImageToStorage(uris: List<Uri>, callback: (List<Uri>) -> Unit) {
+        viewModelScope.launch {
+            val result = dataRepository.saveImageToStorage(uris)
+            callback(result)
+        }
+    }
+
 
 }

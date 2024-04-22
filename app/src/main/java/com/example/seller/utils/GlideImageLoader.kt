@@ -22,7 +22,7 @@ class GlideImageLoader(private val context: Context?) {
 
         val glideRequest = Glide.with(context!!)
             .load(imgUrl)
-            .override(200, 200)
+            .override(100, 100)
             .placeholder(placeholder)
             .error(error)
 

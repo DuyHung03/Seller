@@ -10,4 +10,6 @@ data class Category(
     val image: String = "", // https://w0.peakpx.com/wallpaper/870/294/HD-wallpaper-anime-kamen-rider.jpg
     val name: String = "", // Clothes
     val updatedAt: String = "", // 2024-01-08T00:27:26.000Z
-) : Parcelable
+) : Parcelable {
+    override fun toString(): String = name
+}

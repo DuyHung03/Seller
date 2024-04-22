@@ -138,7 +138,11 @@ dependencies {
     //bottom nav
     implementation("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 
-
     //fingerprint
     implementation("androidx.biometric:biometric:1.1.0")
+
+    //room database
+    kapt ("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-runtime:2.6.1")
+
 }

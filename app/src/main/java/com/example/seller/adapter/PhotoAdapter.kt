@@ -1,18 +1,17 @@
 package com.example.seller.adapter
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seller.R
 import com.example.seller.utils.GlideImageLoader
+import com.google.android.material.textview.MaterialTextView
 import com.makeramen.roundedimageview.RoundedImageView
 
 class PhotoAdapter(
-    private var itemList: List<Uri>,
+    private var itemList: List<String>,
 
     private val onRemoveClicked: () -> Unit
 ) :
@@ -20,14 +19,14 @@ class PhotoAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image = itemView.findViewById<RoundedImageView>(R.id.image)
-        val removeBtn = itemView.findViewById<ImageView>(R.id.removeBtn)!!
+        val removeBtn = itemView.findViewById<MaterialTextView>(R.id.removeBtn)!!
 
         @SuppressLint("SetTextI18n")
         fun bind(
-            imageUrl: Uri,
+            imageUrl: String,
         ) {
             GlideImageLoader(itemView.context).load(
-                imageUrl.toString(),
+                imageUrl,
                 image,
                 R.drawable.image_placeholder,
                 R.drawable.image_placeholder
@@ -48,9 +47,7 @@ class PhotoAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val uri = itemList[position]
 
-        holder.bind(
-            uri
-        )
+        holder.bind(uri)
 
         holder.removeBtn.setOnClickListener {
             onRemoveClicked()
@@ -58,7 +55,7 @@ class PhotoAdapter(
 
     }
 
-    fun setData(list: List<Uri>) {
+    fun setData(list: List<String>) {
         itemList = list
         notifyDataSetChanged()
     }

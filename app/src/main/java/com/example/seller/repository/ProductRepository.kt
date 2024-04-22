@@ -1,13 +1,17 @@
 package com.example.seller.repository
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.example.seller.entity.Category
+import com.example.seller.entity.CategoryRequest
 import com.example.seller.entity.Product
+import com.example.seller.entity.ProductRequest
 import com.example.seller.network.ProductService
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
+@SuppressLint("LogNotTimber")
 class ProductRepository @Inject constructor(
     private val productService: ProductService
 ) {
@@ -52,6 +56,117 @@ class ProductRepository @Inject constructor(
         } catch (e: HttpException) {
             Log.d("TAG", "Error loading getCategories: $e")
             null
+        }
+    }
+
+    suspend fun updateProduct(id: Int, updateProduct: ProductRequest): String {
+        return try {
+            val res = productService.updateProduct(id, updateProduct)
+            if (res.isSuccessful) {
+                "Success"
+            } else {
+                Log.d("TAG", "updateProduct: Unsuccessful response: ${res.message()}")
+                "Failed: ${res.message()}"
+            }
+        } catch (e: IOException) {
+            Log.e("TAG", "updateProduct: Network error", e)
+            "Network error: ${e.message}"
+        } catch (e: Exception) {
+            Log.e("TAG", "updateProduct: Unexpected error", e)
+            "Error: ${e.message}"
+        }
+    }
+
+    suspend fun deleteProduct(id: Int): String {
+        return try {
+            val res = productService.deleteProduct(id)
+            if (res.isSuccessful) {
+                "Success"
+            } else {
+                Log.d("TAG", "delete: Unsuccessful response: ${res.message()}")
+                "Failed: ${res.message()}"
+            }
+        } catch (e: IOException) {
+            Log.e("TAG", "delete: Network error", e)
+            "Network error: ${e.message}"
+        } catch (e: Exception) {
+            Log.e("TAG", "delete: Unexpected error", e)
+            "Error: ${e.message}"
+        }
+    }
+
+    suspend fun addNewProduct(productRequest: ProductRequest): String {
+        return try {
+            val res = productService.addNewProduct(productRequest)
+            if (res.isSuccessful) {
+                "Success"
+            } else {
+                Log.d("TAG", "add: Unsuccessful response: ${res.message()}")
+                "Failed: ${res.message()}"
+            }
+        } catch (e: IOException) {
+            Log.e("TAG", "add: Network error", e)
+            "Network error: ${e.message}"
+        } catch (e: Exception) {
+            Log.e("TAG", "add: Unexpected error", e)
+            "Error: ${e.message}"
+        }
+    }
+
+    suspend fun updateCategory(id: Int, updateCategoryRequest: CategoryRequest): String {
+        return try {
+            val res = productService.updateCategory(id, updateCategoryRequest)
+            if (res.isSuccessful) {
+                "Success"
+            } else {
+                Log.d(
+                    "TAG",
+                    "updateCategory: Unsuccessful response: ${res.code()} ${res.message()}"
+                )
+                "Failed: ${res.message()}"
+            }
+        } catch (e: IOException) {
+            Log.e("TAG", "updateCategory: Network error", e)
+            "Network error: ${e.message}"
+        } catch (e: Exception) {
+            Log.e("TAG", "updateCategory: Unexpected error", e)
+            "Error: ${e.message}"
+        }
+    }
+
+    suspend fun deleteCategory(id: Int): String {
+        return try {
+            val res = productService.deleteCategory(id)
+            if (res.isSuccessful) {
+                "Success"
+            } else {
+                Log.d("TAG", "delete: Unsuccessful response: ${res.message()}")
+                "Failed: ${res.message()}"
+            }
+        } catch (e: IOException) {
+            Log.e("TAG", "delete: Network error", e)
+            "Network error: ${e.message}"
+        } catch (e: Exception) {
+            Log.e("TAG", "delete: Unexpected error", e)
+            "Error: ${e.message}"
+        }
+    }
+
+    suspend fun addNewCategory(categoryRequest: CategoryRequest): String {
+        return try {
+            val res = productService.addNewCategory(categoryRequest)
+            if (res.isSuccessful) {
+                "Success"
+            } else {
+                Log.d("TAG", "add: Unsuccessful response: ${res.message()}")
+                "Failed: ${res.message()}"
+            }
+        } catch (e: IOException) {
+            Log.e("TAG", "add: Network error", e)
+            "Network error: ${e.message}"
+        } catch (e: Exception) {
+            Log.e("TAG", "add: Unexpected error", e)
+            "Error: ${e.message}"
         }
     }
 }
