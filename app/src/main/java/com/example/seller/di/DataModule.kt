@@ -1,5 +1,6 @@
 package com.example.seller.di
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
@@ -16,4 +17,6 @@ class DataModule {
     @Provides
     fun provideFirebaseStorage(): FirebaseStorage = FirebaseStorage.getInstance()
 
+    @Provides
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 }

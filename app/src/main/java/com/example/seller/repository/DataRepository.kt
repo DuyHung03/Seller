@@ -4,6 +4,9 @@ import android.net.Uri
 import android.util.Log
 import com.example.seller.entity.Order
 import com.example.seller.entity.OrderList
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
@@ -12,8 +15,25 @@ import javax.inject.Inject
 
 class DataRepository @Inject constructor(
     private val db: FirebaseFirestore,
-    private val storage: FirebaseStorage
+    private val storage: FirebaseStorage,
+    private val auth: FirebaseAuth
 ) {
+
+    suspend fun signInEmail(email: String, password: String): FirebaseUser? {
+        return try {
+            val authResult = auth.signInWithEmailAndPassword(email, password).await()
+            if (authResult.user != null) {
+                authResult.user
+            } else {
+                Log.d("TAG", "signInEmail: Cannot found account")
+                null
+            }
+        } catch (e: FirebaseAuthException) {
+            // Handle exception or log the error
+            Log.d("TAG", "signInEmail: ${e.message}")
+            null
+        }
+    }
 
     private val orderCollection = db.collection("order")
     private val storageRef = storage.reference
@@ -88,7 +108,6 @@ class DataRepository @Inject constructor(
         }
         return list
     }
-
 
 
 }

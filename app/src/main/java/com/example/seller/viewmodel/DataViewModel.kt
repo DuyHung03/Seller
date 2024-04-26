@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.seller.entity.Order
 import com.example.seller.repository.DataRepository
+import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -51,5 +52,10 @@ class DataViewModel @Inject constructor(
         }
     }
 
+    fun signInEmail(email: String, password: String, callback: (FirebaseUser?) -> Unit) =
+        viewModelScope.launch {
+            val result = dataRepository.signInEmail(email, password)
+            callback(result)
+        }
 
 }

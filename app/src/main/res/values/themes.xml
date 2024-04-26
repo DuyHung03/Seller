@@ -11,4 +11,8 @@
     </style>
 
     <style name="Theme.Seller" parent="Base.Theme.Seller" />
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/spash_background</item>
+    </style>
 </resources>
