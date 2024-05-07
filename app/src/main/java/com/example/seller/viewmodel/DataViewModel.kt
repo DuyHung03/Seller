@@ -1,10 +1,12 @@
 package com.example.seller.viewmodel
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.seller.entity.Message
 import com.example.seller.entity.Order
 import com.example.seller.repository.DataRepository
 import com.google.firebase.auth.FirebaseUser
@@ -57,5 +59,29 @@ class DataViewModel @Inject constructor(
             val result = dataRepository.signInEmail(email, password)
             callback(result)
         }
+
+    private val _chatUserLiveData = MutableLiveData<List<Message>>()
+    val chatUserLiveData: LiveData<List<Message>> = _chatUserLiveData
+    fun getChatUserList() {
+        try {
+            dataRepository.getChatUserList(_chatUserLiveData)
+        } catch (e: Exception) {
+            Log.d("TAG", "getChatUserList: $e")
+        }
+    }
+
+    private val _messagesLiveData = MutableLiveData<List<Message>>()
+    val messagesLiveData: LiveData<List<Message>> = _messagesLiveData
+    fun getMessageByUser(userId: String) {
+        try {
+            dataRepository.getMessageByUser(userId, _messagesLiveData)
+        } catch (e: Exception) {
+            Log.d("TAG", "getChatUserList: $e")
+        }
+    }
+
+    fun sentMessage(userId: String, message: Message) = viewModelScope.launch {
+        dataRepository.sendMessage(userId, message)
+    }
 
 }

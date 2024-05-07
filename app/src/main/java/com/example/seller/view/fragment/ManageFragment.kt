@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.seller.R
 import com.example.seller.databinding.FragmentManageBinding
+import com.example.seller.view.activity.ChatListActivity
 import com.example.seller.view.activity.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,6 +30,23 @@ class ManageFragment : Fragment() {
         binding.product.setOnClickListener {
             toProductScreen()
         }
+
+        binding.message.setOnClickListener {
+            toMessageScreen()
+        }
+    }
+
+    private fun toMessageScreen() {
+        val intent = Intent(context, ChatListActivity::class.java)
+        startActivity(
+            intent,
+            ActivityOptions.makeCustomAnimation(
+                context,
+                R.anim.slide_in_right,
+                R.anim.slide_out_left
+            )
+                .toBundle()
+        )
     }
 
     private fun toProductScreen() {

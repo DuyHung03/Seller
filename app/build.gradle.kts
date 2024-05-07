@@ -60,6 +60,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics:21.5.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
+    implementation("com.google.firebase:firebase-database:20.3.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -141,4 +142,11 @@ dependencies {
     //fingerprint
     implementation("androidx.biometric:biometric:1.1.0")
 
+    //room
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+
+    //zoom image
+    implementation("com.github.MikeOrtiz:TouchImageView:3.6")
 }
